@@ -1,0 +1,7 @@
+- name: Rsyslog configation
+  hosts: all
+  #strategy: debug
+  gather_facts: yes
+  become: yes
+  roles:
+    - { role: ansible-os-rsyslog, tags: [ 'all' ] }

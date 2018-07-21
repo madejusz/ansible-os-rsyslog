@@ -1,0 +1,36 @@
+
+- name: 'Syslog configuration'
+  lineinfile:
+    path: /etc/rsyslog.d/100-local.conf
+    state: present
+    line: '*.*    /var/log/all.log'
+    create: yes
+
+- name: 'Log roration for RedHat'
+  lineinfile:
+    path: /etc/logrotate.d/syslog
+    state: present
+    insertbefore: BOF
+    line: /var/log/all.log
+  when: ansible_distribution == "RedHat"
+
+- name: 'Log roration for SLES'
+  lineinfile:
+    path: /etc/logrotate.d/syslog
+    state: present
+    insertbefore: '^\/var\/log\/warn'
+    line: /var/log/all.log
+  when: ansible_distribution == "SLES"
+
+- name: 'Log roration for Ubuntu'
+  lineinfile:
+    path: /etc/logrotate.d/syslog
+    state: present
+    insertbefore: '^\/var\/log\/warn'
+    line: /var/log/all.log
+  when: ansible_distribution == "ubuntu"
+
+- name: 'Restart rsyslog'
+  service:
+    name: rsyslog
+    state: restarted
