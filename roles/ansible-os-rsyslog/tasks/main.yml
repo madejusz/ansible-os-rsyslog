@@ -1,4 +1,4 @@
-
+---
 - name: 'Syslog configuration'
   lineinfile:
     path: /etc/rsyslog.d/100-local.conf
@@ -34,7 +34,7 @@
   lineinfile:
     path: /etc/logrotate.d/syslog
     state: present
-    insertbefore: '^\/var\/log\/warn'
+    insertbefore: '^\/var\/log\/spooler'
     line: /var/log/all.log
   when: ansible_distribution == "OracleLinux"
 
