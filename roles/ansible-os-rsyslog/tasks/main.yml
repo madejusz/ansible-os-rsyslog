@@ -30,6 +30,14 @@
     line: /var/log/all.log
   when: ansible_distribution == "ubuntu"
 
+- name: 'Log roration for OracleLinux'
+  lineinfile:
+    path: /etc/logrotate.d/syslog
+    state: present
+    insertbefore: '^\/var\/log\/warn'
+    line: /var/log/all.log
+  when: ansible_distribution == "OracleLinux"
+
 - name: 'Restart rsyslog'
   service:
     name: rsyslog
