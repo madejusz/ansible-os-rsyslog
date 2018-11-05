@@ -1,2 +1,6 @@
 credentials/*
 site.retry
+roles/ansible-create-user/vars/*
+!roles/
+!roles/ansible-create-user/vars/main.yml
+!roles/ansible-create-user/vars/example_userlists.yml
