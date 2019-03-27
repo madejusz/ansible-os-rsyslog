@@ -1,12 +1,23 @@
 ---
-- name: 'Syslog configuration'
+- name: Syslog configuration
   lineinfile:
     path: /etc/rsyslog.d/100-local.conf
     state: present
     line: '*.*    /var/log/all.log'
     create: yes
 
-- name: 'Log roration for RedHat'
+- name: Enable rsyslog statistics
+  copy:
+    content:
+     module(load="impstats"
+       interval="60"
+       severity="7")
+    dest: /etc/rsyslog.d/12-stats.conf
+    owner: root
+    group: root
+    mode: 0400
+
+- name: Log roration for RedHat
   lineinfile:
     path: /etc/logrotate.d/syslog
     state: present
@@ -14,7 +25,7 @@
     line: /var/log/all.log
   when: ansible_distribution == "RedHat"
 
-- name: 'Log roration for SLES'
+- name: Log roration for SLES
   lineinfile:
     path: /etc/logrotate.d/syslog
     state: present
@@ -22,7 +33,7 @@
     line: /var/log/all.log
   when: ansible_distribution == "SLES"
 
-- name: 'Log roration for Ubuntu'
+- name: Log roration for Ubuntu
   lineinfile:
     path: /etc/logrotate.d/syslog
     state: present
@@ -30,7 +41,7 @@
     line: /var/log/all.log
   when: ansible_distribution == "ubuntu"
 
-- name: 'Log roration for OracleLinux'
+- name: Log roration for OracleLinux
   lineinfile:
     path: /etc/logrotate.d/syslog
     state: present
@@ -38,7 +49,7 @@
     line: /var/log/all.log
   when: ansible_distribution == "OracleLinux"
 
-- name: 'Restart rsyslog'
+- name: Restart rsyslog
   service:
     name: rsyslog
     state: restarted
