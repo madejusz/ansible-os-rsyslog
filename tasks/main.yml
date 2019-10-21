@@ -15,6 +15,14 @@
     group: root
     mode: 0400
 
+- name: Log rotation for Debian
+  lineinfile:
+    path: /etc/logrotate.d/rsyslog
+    state: present
+    insertbefore: BOF
+    line: /var/log/all.log
+  when: ansible_distribution == "Debian"
+
 - name: Log roration for RedHat
   lineinfile:
     path: /etc/logrotate.d/syslog
