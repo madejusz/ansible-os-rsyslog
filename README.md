@@ -37,4 +37,4 @@ BSD
 Author Information
 ------------------
 
-Jakub K. Boguslaw <jboguslaw@gmail.com>, <jakub.boguslaw@accenture.com> please inform me if you find any error/mistake
+Jakub K. Boguslaw <jboguslaw@gmail.com> please inform me if you find any error/mistake
