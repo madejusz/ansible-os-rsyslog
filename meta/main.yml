@@ -7,6 +7,20 @@ galaxy_info:
 
   license: license (GPLv2, CC-BY, etc)
 
+  platforms:
+    - name: RedHat
+      versions:
+        - 6
+        - 7
+        - 8
+    - name: Debian
+      versions:
+        - 7
+        - 9
+        - 8
+        - 10
+    - name: Centos
+
   min_ansible_version: 2.4
   galaxy_tags: []
 dependencies: []
