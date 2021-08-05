@@ -7,7 +7,9 @@
         name:
           - openssh
           - openssh-server
+      ignore_errors: true
     - name: Start OpenSSH daemon
       service:
         name: sshd
         state: started
+      ignore_errors: true
