@@ -7,9 +7,16 @@
         name:
           - openssh
           - openssh-server
+          - rsyslog
+          - rsyslogd
       ignore_errors: true
     - name: Start OpenSSH daemon
       service:
-        name: sshd
+        name: "{{ item }}"
         state: started
+      loop:
+          - openssh
+          - openssh-server
+          - rsyslog
+          - rsyslogd
       ignore_errors: true
