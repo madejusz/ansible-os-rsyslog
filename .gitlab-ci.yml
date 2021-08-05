@@ -13,6 +13,7 @@ services:
 stages:
   - lint
   - converge
+  - verify
 
 # https://docs.gitlab.com/ee/ci/yaml/#before_script
 before_script:
