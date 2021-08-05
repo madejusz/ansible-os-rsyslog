@@ -15,8 +15,8 @@
         name: "{{ item }}"
         state: started
       loop:
-          - openssh
-          - openssh-server
-          - rsyslog
-          - rsyslogd
+        - openssh
+        - openssh-server
+        - rsyslog
+        - rsyslogd
       ignore_errors: true
