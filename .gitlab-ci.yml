@@ -33,10 +33,10 @@ molecule-el7-testing:
     - molecule converge
     - molecule idempotence
     - molecule destroy
-  only:
-    changes:
-      - ./*/*
-      - .gitlab-ci.yml
+#  only:
+#    changes:
+#      - ./*/*
+#      - .gitlab-ci.yml
 
 # a gitlab stage per molecule scenario
 # https://docs.gitlab.com/ee/ci/yaml/#stages
@@ -49,7 +49,7 @@ molecule-el8-testing:
     - molecule converge -s el8
     - molecule idempotence -s el8
     - molecule destroy -s el8
-  only:
-    changes:
-      - ./*/*
-      - .gitlab-ci.yml
+#  only:
+#    changes:
+#      - ./*/*
+#      - .gitlab-ci.yml
