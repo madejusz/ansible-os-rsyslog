@@ -22,17 +22,23 @@ before_script:
   - pwd
   - ls -l
 
-# a gitlab stage per molecule scenario
-# https://docs.gitlab.com/ee/ci/yaml/#stages
-# https://molecule.readthedocs.io/en/latest/ci.html#gitlab-ci
-molecule-el7-testing:
-  stage: test
+molecule:list:
+  stage: lint
   variables:
     DOCKER_HOST: "tcp://docker:2375"
   script:
-    - molecule converge
-    - molecule idempotence
-    - molecule destroy
+    - molecule lint
+# a gitlab stage per molecule scenario
+# https://docs.gitlab.com/ee/ci/yaml/#stages
+# https://molecule.readthedocs.io/en/latest/ci.html#gitlab-ci
+#molecule-el7-testing:
+#  stage: test
+#  variables:
+#    DOCKER_HOST: "tcp://docker:2375"
+#  script:
+#    - molecule converge
+#    - molecule idempotence
+#    - molecule destroy
 #  only:
 #    changes:
 #      - ./*/*
@@ -40,15 +46,15 @@ molecule-el7-testing:
 
 # a gitlab stage per molecule scenario
 # https://docs.gitlab.com/ee/ci/yaml/#stages
-molecule-el8-testing:
-  stage: test
-  variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-  script:
-    - molecule converge -s el8
-    - molecule idempotence -s el8
-    - molecule destroy -s el8
+#molecule-el8-testing:
+#  stage: test
+#  variables:
+#    DOCKER_HOST: "tcp://docker:2375"
+#    PY_COLORS: 1
+#  script:
+#    - molecule converge -s el8
+#    - molecule idempotence -s el8
+#    - molecule destroy -s el8
 #  only:
 #    changes:
 #      - ./*/*
