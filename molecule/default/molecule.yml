@@ -6,7 +6,8 @@ driver:
 platforms:
   - name: docker-debian9-ansible
     image: geerlingguy/docker-debian9-ansible
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    #    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    command: /sbin/init
     tmpfs:
       - /run
       - /tmp
@@ -16,7 +17,8 @@ platforms:
     pre_build_image: true
   - name: docker-ubuntu1804-ansible
     image: geerlingguy/docker-ubuntu1804-ansible
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    #    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    command: /sbin/init
     tmpfs:
       - /run
       - /tmp
