@@ -1,29 +1,55 @@
 ---
+# https://docs.gitlab.com/ee/ci/yaml/#image
+# https://github.com/ansible-community/toolset
+# https://quay.io/repository/ansible/toolset?tab=tags
+image: quay.io/ansible/toolset:main
+
+# https://docs.gitlab.com/ee/ci/yaml/#services
+# https://stackoverflow.com/a/48727996
+services:
+  - docker:dind
+
+# https://docs.gitlab.com/ee/ci/yaml/#stages
 stages:
   - test
 
-variables:
-  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip"
-  GIT_STRATEGY: clone
-
-cache:
-  paths:
-    - .pip/
-    - virtenv/
-
+# https://docs.gitlab.com/ee/ci/yaml/#before_script
 before_script:
   - python -V
-  - pip install virtualenv
-  - virtualenv virtenv
-  - source virtenv/bin/activate
-  - pip install ansible molecule docker
   - ansible --version
   - molecule --version
-  - docker --version
+  - docker -v
+  - pwd
+  - ls -l
 
-molecule:
+# a gitlab stage per molecule scenario
+# https://docs.gitlab.com/ee/ci/yaml/#stages
+# https://molecule.readthedocs.io/en/latest/ci.html#gitlab-ci
+molecule-el7-testing:
   stage: test
-  tags:
-    - molecule-jobs
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
   script:
-    - molecule test
+    - molecule converge
+    - molecule idempotence
+    - molecule destroy
+  only:
+    changes:
+      - ./*/*
+      - .gitlab-ci.yml
+
+# a gitlab stage per molecule scenario
+# https://docs.gitlab.com/ee/ci/yaml/#stages
+molecule-el8-testing:
+  stage: test
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+  script:
+    - molecule converge -s el8
+    - molecule idempotence -s el8
+    - molecule destroy -s el8
+  only:
+    changes:
+      - ./*/*
+      - .gitlab-ci.yml
