@@ -4,7 +4,7 @@
     path: /etc/rsyslog.d/100-local.conf
     state: present
     line: '*.*    /var/log/all.log'
-    create: yes
+    create: true
 
 - name: Enable rsyslog statistics
   copy:
