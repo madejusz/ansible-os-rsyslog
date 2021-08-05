@@ -1,29 +1,23 @@
 ---
-# molecule/default/molecule.yml
-# vim: ai et ts=2 sw=2 sts=2 fileencoding=utf-8 ft=yaml
-
 dependency:
   name: galaxy
-  enabled: false
 driver:
   name: docker
 platforms:
-  - name: test-el7.example.com
-    image: quay.io/juliu_s/centos-systemd-ansible-molecule:centos7
-    command: /usr/sbin/init
-    tmpfs:
-      - /run
-      - /tmp
+  - name: rancher-default
+#    image: >-
+#      image.com/
+#      docker-${MOLECULE_DISTRO:-centos7}-ansible:latest
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
     pre_build_image: true
 provisioner:
   name: ansible
-  config_options:
-    defaults:
-      interpreter_python: auto
-      stdout_callback: yaml
-      ansible_managed: "# Ansible managed!"
 verifier:
   name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .

@@ -1,0 +1,13 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Install OpenSSH server
+      package:
+        name:
+          - openssh
+          - openssh-server
+    - name: Start OpenSSH daemon
+      service:
+        name: sshd
+        state: started
