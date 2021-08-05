@@ -1,0 +1,29 @@
+---
+# molecule/el8/molecule.yml
+# vim: ai et ts=2 sw=2 sts=2 fileencoding=utf-8 ft=yaml
+
+dependency:
+  name: galaxy
+  enabled: false
+driver:
+  name: docker
+platforms:
+  - name: test-el8.example.com
+    image: quay.io/juliu_s/centos-systemd-ansible-molecule:centos8
+    command: /usr/sbin/init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      interpreter_python: auto
+      stdout_callback: yaml
+      ansible_managed: "# Ansible managed!"
+verifier:
+  name: ansible

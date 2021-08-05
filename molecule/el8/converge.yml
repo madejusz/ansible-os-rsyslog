@@ -1,0 +1,11 @@
+---
+# molecule/el8/converge.yml
+# vim: ai et ts=2 sw=2 sts=2 fileencoding=utf-8 ft=yaml
+
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    ansible_user: ansible
+  roles:
+    - role: ansible-os-rsyslog
