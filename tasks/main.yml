@@ -8,9 +8,9 @@
 
 - name: Enable rsyslog statistics
   copy:
-    content: > 
-     module(load="impstats" interval="60" severity="7" 
-     resetCounters="on" format="cee")
+    content: >
+      module(load="impstats" interval="60" severity="7"
+       resetCounters="on" format="cee")
     dest: /etc/rsyslog.d/12-stats.conf
     owner: root
     group: root
