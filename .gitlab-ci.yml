@@ -11,7 +11,7 @@ services:
 
 # https://docs.gitlab.com/ee/ci/yaml/#stages
 stages:
-  - test
+  - lint
 
 # https://docs.gitlab.com/ee/ci/yaml/#before_script
 before_script:
@@ -21,13 +21,24 @@ before_script:
   - docker -v
   - pwd
   - ls -l
+  - molecule create
+  - molecule list
 
-molecule-lint:
-  stage: test
+molecule:lint:
+  stage: lint
   variables:
     DOCKER_HOST: "tcp://docker:2375"
   script:
     - molecule lint
+
+molecule:converge:
+  stage: converge
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+  script:
+    - molecule 
+
+
 # a gitlab stage per molecule scenario
 # https://docs.gitlab.com/ee/ci/yaml/#stages
 # https://molecule.readthedocs.io/en/latest/ci.html#gitlab-ci
