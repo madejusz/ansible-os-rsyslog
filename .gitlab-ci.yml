@@ -37,8 +37,15 @@ molecule:converge:
   variables:
     DOCKER_HOST: "tcp://docker:2375"
   script:
-    - molecule
+    - molecule converge
 
+
+molecule:verify:
+  stage: verify
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+  script:
+    - molecule verify
 
 # a gitlab stage per molecule scenario
 # https://docs.gitlab.com/ee/ci/yaml/#stages

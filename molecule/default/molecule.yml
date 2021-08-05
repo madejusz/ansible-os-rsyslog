@@ -4,7 +4,7 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: rancher-default
+  - name: role-default
     image: registry.access.redhat.com/ubi8/ubi-init
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     tmpfs:
