@@ -22,8 +22,8 @@ before_script:
   - pwd
   - ls -l
 
-molecule:list:
-  stage: lint
+molecule-lint:
+  stage: test
   variables:
     DOCKER_HOST: "tcp://docker:2375"
   script:
