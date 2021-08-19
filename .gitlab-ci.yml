@@ -19,6 +19,19 @@ image: quay.io/ansible/toolset:main
 services:
   - docker:dind
 
+variables:
+  DOCKER_HOST: "tcp://docker:2375"
+  PY_COLORS: 1
+  IMG_CENTOS7: geerlingguy/docker-centos7-ansible
+  IMG_CENTOS8: geerlingguy/docker-centos8-ansible
+  IMG_DEBIAN8: geerlingguy/docker-debian8-ansible
+  IMG_DEBIAN9: geerlingguy/docker-debian9-ansible
+  IMG_DEBIAN10: geerlingguy/docker-debian10-ansible
+  IMG_DEBIAN11: geerlingguy/docker-debian11-ansible
+  IMG_UBUNTU1604: geerlingguy/docker-ubuntu1604-ansible
+  IMG_UBUNTU1804: geerlingguy/docker-ubuntu1804-ansible
+  IMG_UBUNTU2004: geerlingguy/docker-ubuntu2004-ansible
+
 # https://docs.gitlab.com/ee/ci/yaml/#stages
 stages:
   - lint
@@ -40,122 +53,78 @@ before_script:
 # LINT
 #
 # Lint - cent
-molecule:lint:centos6:
-  stage: lint
-  variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-centos6-ansible
-  script:
-    - molecule lint
+# FIXME: Centos 6 - core dump and not working
+# molecule:lint:centos6:
+#   stage: lint
+#   variables:
+#     DOCKER_HOST: "tcp://docker:2375"
+#     PY_COLORS: 1
+#     MOLECULE_DISTRO: geerlingguy/docker-centos6-ansible
+#   script:
+#     - molecule lint
 
 molecule:lint:centos7:
   stage: lint
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-centos7-ansible
+    MOLECULE_DISTRO: $IMG_CENTOS7
   script:
     - molecule lint
 
 molecule:lint:centos8:
   stage: lint
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-centos8-ansible
+    MOLECULE_DISTRO: $IMG_CENTOS8
   script:
     - molecule lint
 
 # Lint - debian
-molecule:lint:debian7:
-  stage: lint
-  variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-debian7-ansible
-  script:
-    - molecule lint
-
 molecule:lint:debian8:
   stage: lint
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-debian8-ansible
+    MOLECULE_DISTRO: $IMG_DEBIAN8
   script:
     - molecule lint
 
 molecule:lint:debian9:
   stage: lint
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-debian9-ansible
+    MOLECULE_DISTRO: $IMG_DEBIAN9
   script:
     - molecule lint
 
 molecule:lint:debian10:
   stage: lint
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-debian10-ansible
+    MOLECULE_DISTRO: $IMG_DEBIAN10
   script:
     - molecule lint
 
 molecule:lint:debian11:
   stage: lint
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-debian11-ansible
+    MOLECULE_DISTRO: $IMG_DEBIAN11
   script:
     - molecule lint
 
 # Lint - ubuntu
-molecule:lint:ubuntu1204:
-  stage: lint
-  variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-ubuntu1204-ansible
-  script:
-    - molecule lint
-
-molecule:lint:ubuntu1404:
-  stage: lint
-  variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-ubuntu1404-ansible
-  script:
-    - molecule lint
-
 molecule:lint:ubuntu1604:
   stage: lint
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-ubuntu1604-ansible
+    MOLECULE_DISTRO: $IMG_UBUNTU1604
   script:
     - molecule lint
 
 molecule:lint:ubuntu1804:
   stage: lint
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-ubuntu1804-ansible
+    MOLECULE_DISTRO: $IMG_UBUNTU1804
   script:
     - molecule lint
 
 molecule:lint:ubuntu2004:
   stage: lint
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
-    MOLECULE_DISTRO: geerlingguy/docker-ubuntu2004-ansible
+    MOLECULE_DISTRO: $IMG_UBUNTU2004
   script:
     - molecule lint
 
@@ -167,7 +136,6 @@ molecule:converge:
     PY_COLORS: 1
   script:
     - molecule converge
-
 
 molecule:verify:
   stage: verify
