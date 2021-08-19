@@ -6,7 +6,7 @@ driver:
 platforms:
   - name: ansible-os-rsyslog
     # image: geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest
-    image: ${MOLECULE_DISTRO:geerlingguy/docker-centos7-ansible}
+    image: ${MOLECULE_DISTRO:-geerlingguy/docker-centos7-ansible}
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
