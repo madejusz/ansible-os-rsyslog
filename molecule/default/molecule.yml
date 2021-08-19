@@ -4,7 +4,7 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: rancher-default
+  - name: ansible-os-rsyslog
     image: >-
       geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest
       command: ${MOLECULE_DOCKER_COMMAND:-""}
