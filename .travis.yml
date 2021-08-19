@@ -5,8 +5,8 @@ python: "2.7"
 env:
   matrix:
     - MOLECULE_DISTRO: geerlingguy/docker-centos7-ansible
-    - MOLECULE_DISTRO: geerlingguy/docker-debian11-ansible
-    - MOLECU_LE_DISTRO: geerlingguy/docker-ubuntu1804-ansible
+    # - MOLECULE_DISTRO: geerlingguy/docker-debian11-ansible
+    # - MOLECU_LE_DISTRO: geerlingguy/docker-ubuntu1804-ansible
     # - MOLECULE_DISTRO: centos:6
     # - MOLECULE_DISTRO: centos:7
     # - MOLECULE_DISTRO: centos:8
