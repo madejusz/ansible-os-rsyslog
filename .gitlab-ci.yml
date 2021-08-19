@@ -186,14 +186,73 @@ molecule:converge:ubuntu2004:
     MOLECULE_DISTRO: $IMG_UBUNTU2004
   script:
     - molecule converge
+
 #
 # Verify
 #
-molecule:verify:
+# verify - centos
+molecule:verify:centos7:
   stage: verify
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
+    MOLECULE_DISTRO: $IMG_CENTOS7
+  script:
+    - molecule verify
+
+molecule:verify:centos8:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_CENTOS8
+  script:
+    - molecule verify
+
+# verify - debian
+molecule:verify:debian8:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN8
+  script:
+    - molecule verify
+
+molecule:verify:debian9:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN9
+  script:
+    - molecule verify
+
+molecule:verify:debian10:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN10
+  script:
+    - molecule verify
+
+molecule:verify:debian11:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN11
+  script:
+    - molecule verify
+
+# verify - ubuntu
+molecule:verify:ubuntu1604:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1604
+  script:
+    - molecule verify
+
+molecule:verify:ubuntu1804:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1804
+  script:
+    - molecule verify
+
+molecule:verify:ubuntu2004:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU2004
   script:
     - molecule verify
 
