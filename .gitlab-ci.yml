@@ -11,7 +11,8 @@
 # https://docs.gitlab.com/ee/ci/yaml/#image
 # https://github.com/ansible-community/toolset
 # https://quay.io/repository/ansible/toolset?tab=tags
-image: quay.io/ansible/toolset:main
+# image: quay.io/ansible/toolset:main
+image: quay.io/ansible/molecule:latest
 
 # https://docs.gitlab.com/ee/ci/yaml/#services
 # https://stackoverflow.com/a/48727996
@@ -39,6 +40,7 @@ molecule:lint:
   stage: lint
   variables:
     DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
   script:
     - molecule lint
 
@@ -46,6 +48,7 @@ molecule:converge:
   stage: converge
   variables:
     DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
   script:
     - molecule converge
 
@@ -54,6 +57,7 @@ molecule:verify:
   stage: verify
   variables:
     DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
   script:
     - molecule verify
 
