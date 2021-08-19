@@ -4,7 +4,6 @@ python: "2.7"
 
 env:
   matrix:
-
     # RPM
     - MOLECULE_DISTRO: centos:6
     - MOLECULE_DISTRO: centos:7
