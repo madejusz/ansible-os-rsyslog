@@ -7,17 +7,22 @@
         msg: "Linux distribution {{ ansible_distribution }}"
 
     - name: Install OpenSSH server
-      package:
+      yum:
         name:
           - openssh
           - openssh-server
           - rsyslog
+        state: present
+        update_cache: yes
       when: (ansible_distribution | lower) in ("redhat", "sles", "oraclelinux", "centos")
 
     - name: Install OpenSSH Client
-      package:
+      apt:
         name:
           - openssh-client
+          - openssh-server
+          - rsyslog
+        update_cache: yes
       when: (ansible_distribution | lower) in ("ubuntu", "debian")
 
     - name: Start OpenSSH daemon
