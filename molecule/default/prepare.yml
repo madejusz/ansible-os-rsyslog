@@ -12,7 +12,7 @@
           - openssh
           - openssh-server
           - rsyslog
-      when: (ansible_distribution | lower) in ("redhat", "sles", "oraclelinux")
+      when: (ansible_distribution | lower) in ("redhat", "sles", "oraclelinux", "centos")
 
     - name: Install OpenSSH Client
       package:
