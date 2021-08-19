@@ -103,7 +103,7 @@ molecule:lint:debian10:
     MOLECULE_DISTRO: geerlingguy/docker-debian10-ansible
   script:
     - molecule lint
-    
+
 molecule:lint:debian11:
   stage: lint
   variables:
