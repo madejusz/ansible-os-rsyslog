@@ -2,6 +2,10 @@
 - name: Prepare
   hosts: all
   tasks:
+    - name: ansible_distribution
+      debug:
+        msg: "Linux distribution {{ ansible_distribution }}"
+
     - name: Install OpenSSH server
       package:
         name:
