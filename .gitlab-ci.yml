@@ -1,4 +1,13 @@
 ---
+# weave of testing:
+#  yamllint
+#  ansible-playbook --syntax-check
+#  ansible-lint
+#  molecule test (integration)
+#  ansible-playbook --check (against prod)
+#  parallel infra!
+#
+#
 # https://docs.gitlab.com/ee/ci/yaml/#image
 # https://github.com/ansible-community/toolset
 # https://quay.io/repository/ansible/toolset?tab=tags

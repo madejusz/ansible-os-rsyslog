@@ -2,33 +2,12 @@
 - name: Prepare
   hosts: all
   tasks:
-    - name: APT update
-      apt:
-        upgrade: true
-        only_upgrade: true
-        update_cache: true
-      ignore_errors: true
-    - name: YUM update
-      yum:
-        name: '*'
-        state: latest
-        update_cache: true
-      ignore_errors: true
     - name: Install OpenSSH server
       package:
         name:
           - openssh
           - openssh-server
-          - rsyslog
-          - rsyslogd
-      ignore_errors: true
     - name: Start OpenSSH daemon
       service:
-        name: "{{ item }}"
+        name: sshd
         state: started
-      loop:
-        - openssh
-        - openssh-server
-        - rsyslog
-        - rsyslogd
-      ignore_errors: true
