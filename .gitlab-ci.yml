@@ -36,7 +36,19 @@ before_script:
   - molecule create
   - molecule list
 
-# MOLECULE_DISTRO
+#
+# LINT
+#
+# Lint - cent
+molecule:lint:centos6:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-centos6-ansible
+  script:
+    - molecule lint
+
 molecule:lint:centos7:
   stage: lint
   variables:
@@ -46,7 +58,6 @@ molecule:lint:centos7:
   script:
     - molecule lint
 
-# MOLECULE_DISTRO
 molecule:lint:centos8:
   stage: lint
   variables:
@@ -56,7 +67,34 @@ molecule:lint:centos8:
   script:
     - molecule lint
 
-# MOLECULE_DISTRO
+# Lint - debian
+molecule:lint:debian7:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-debian7-ansible
+  script:
+    - molecule lint
+
+molecule:lint:debian8:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-debian8-ansible
+  script:
+    - molecule lint
+
+molecule:lint:debian9:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-debian9-ansible
+  script:
+    - molecule lint
+
 molecule:lint:debian10:
   stage: lint
   variables:
@@ -65,7 +103,63 @@ molecule:lint:debian10:
     MOLECULE_DISTRO: geerlingguy/docker-debian10-ansible
   script:
     - molecule lint
+    
+molecule:lint:debian11:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-debian11-ansible
+  script:
+    - molecule lint
 
+# Lint - ubuntu
+molecule:lint:ubuntu1204:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-ubuntu1204-ansible
+  script:
+    - molecule lint
+
+molecule:lint:ubuntu1404:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-ubuntu1404-ansible
+  script:
+    - molecule lint
+
+molecule:lint:ubuntu1604:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-ubuntu1604-ansible
+  script:
+    - molecule lint
+
+molecule:lint:ubuntu1804:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-ubuntu1804-ansible
+  script:
+    - molecule lint
+
+molecule:lint:ubuntu2004:
+  stage: lint
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    PY_COLORS: 1
+    MOLECULE_DISTRO: geerlingguy/docker-ubuntu2004-ansible
+  script:
+    - molecule lint
+
+# Converge
 molecule:converge:
   stage: converge
   variables:
