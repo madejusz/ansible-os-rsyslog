@@ -16,4 +16,3 @@
       service:
         name: rsyslog
         state: started
-
