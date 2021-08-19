@@ -52,17 +52,7 @@ before_script:
 #
 # LINT
 #
-# Lint - cent
-# FIXME: Centos 6 - core dump and not working
-# molecule:lint:centos6:
-#   stage: lint
-#   variables:
-#     DOCKER_HOST: "tcp://docker:2375"
-#     PY_COLORS: 1
-#     MOLECULE_DISTRO: geerlingguy/docker-centos6-ansible
-#   script:
-#     - molecule lint
-
+# Lint - centos
 molecule:lint:centos7:
   stage: lint
   variables:
@@ -128,15 +118,77 @@ molecule:lint:ubuntu2004:
   script:
     - molecule lint
 
+#
 # Converge
-molecule:converge:
+#
+# converge - centos
+molecule:converge:centos7:
   stage: converge
   variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    PY_COLORS: 1
+    MOLECULE_DISTRO: $IMG_CENTOS7
   script:
     - molecule converge
 
+molecule:converge:centos8:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_CENTOS8
+  script:
+    - molecule converge
+
+# converge - debian
+molecule:converge:debian8:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN8
+  script:
+    - molecule converge
+
+molecule:converge:debian9:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN9
+  script:
+    - molecule converge
+
+molecule:converge:debian10:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN10
+  script:
+    - molecule converge
+
+molecule:converge:debian11:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN11
+  script:
+    - molecule converge
+
+# converge - ubuntu
+molecule:converge:ubuntu1604:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1604
+  script:
+    - molecule converge
+
+molecule:converge:ubuntu1804:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1804
+  script:
+    - molecule converge
+
+molecule:converge:ubuntu2004:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU2004
+  script:
+    - molecule converge
+#
+# Verify
+#
 molecule:verify:
   stage: verify
   variables:
@@ -145,34 +197,4 @@ molecule:verify:
   script:
     - molecule verify
 
-# a gitlab stage per molecule scenario
-# https://docs.gitlab.com/ee/ci/yaml/#stages
-# https://molecule.readthedocs.io/en/latest/ci.html#gitlab-ci
-# molecule-el7-testing:
-#   stage: test
-#   variables:
-#     DOCKER_HOST: "tcp://docker:2375"
-#   script:
-#     - molecule converge
-#     - molecule idempotence
-#     - molecule destroy
-#   only:
-#     changes:
-#       - ./*/*
-#       - .gitlab-ci.yml
-
-# a gitlab stage per molecule scenario
-# https://docs.gitlab.com/ee/ci/yaml/#stages
-# molecule-el8-testing:
-#   stage: test
-#   variables:
-#     DOCKER_HOST: "tcp://docker:2375"
-#     PY_COLORS: 1
-#   script:
-#     - molecule converge -s el8
-#     - molecule idempotence -s el8
-#     - molecule destroy -s el8
-#   only:
-#     changes:
-#       - ./*/*
-#       - .gitlab-ci.yml
+# eof
