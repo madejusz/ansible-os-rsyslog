@@ -13,8 +13,9 @@
           - openssh-server
           - rsyslog
         state: present
-        update_cache: yes
-      when: (ansible_distribution | lower) in ("redhat", "sles", "oraclelinux", "centos")
+        update_cache: true
+      when: (ansible_distribution | lower)
+        in ("redhat", "sles", "oraclelinux", "centos")
 
     - name: Install OpenSSH Client
       apt:
@@ -22,7 +23,7 @@
           - openssh-client
           - openssh-server
           - rsyslog
-        update_cache: yes
+        update_cache: true
       when: (ansible_distribution | lower) in ("ubuntu", "debian")
 
     - name: Start OpenSSH daemon
