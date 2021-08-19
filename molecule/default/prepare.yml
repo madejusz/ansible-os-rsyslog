@@ -8,10 +8,19 @@
           - openssh
           - openssh-server
           - rsyslog
+      when: (ansible_distribution | lower) in ("redhat", "sles", "oraclelinux")
+
+    - name: Install OpenSSH Client
+      package:
+        name:
+          - openssh-client
+      when: (ansible_distribution | lower) in ("ubuntu", "debian")
+
     - name: Start OpenSSH daemon
       service:
         name: sshd
         state: started
+
     - name: Install rsyslog
       service:
         name: rsyslog
