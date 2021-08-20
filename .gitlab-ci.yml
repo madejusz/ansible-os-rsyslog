@@ -20,7 +20,7 @@ services:
   - docker:dind
 
 variables:
-  #DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_HOST: "tcp://docker:2375"
   #DOCKER_HOST: "tcp://localhost:2375"
   PY_COLORS: 1
   IMG_CENTOS7: geerlingguy/docker-centos7-ansible
