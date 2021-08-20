@@ -51,8 +51,10 @@ before_script:
   - molecule list
 
 .docker_runner: &docker_runner
-  tags:
-    - aks-docker-runner
+  script:
+    - echo "Running"
+#  tags:
+#    - aks-docker-runner
 
 #
 # LINT
