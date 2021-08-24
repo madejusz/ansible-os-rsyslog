@@ -11,15 +11,21 @@
 # https://docs.gitlab.com/ee/ci/yaml/#image
 # https://github.com/ansible-community/toolset
 # https://quay.io/repository/ansible/toolset?tab=tags
-image: quay.io/ansible/toolset:main
+#image: quay.io/ansible/toolset:main
 # image: quay.io/ansible/molecule:latest
+image: docker:19.03.13
 
 # https://docs.gitlab.com/ee/ci/yaml/#services
 # https://stackoverflow.com/a/48727996
 services:
-  - docker:dind
+  - docker:19.03.13-dind
+  #  - docker:dind
 
 variables:
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_TLS_VERIFY: 1
+  DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
   #DOCKER_HOST: "tcp://docker:2375"
   #DOCKER_HOST: "tcp://localhost:2375"
   PY_COLORS: 1
