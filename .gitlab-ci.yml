@@ -52,12 +52,6 @@ before_script:
   - molecule --version
   - docker -v
   - pwd
-  - ls -l
-  - env
-  - ls -l /proc/*/exe
-  - sleep 600
-  - ps axu
-  - netstat -anop
   - molecule create
   - molecule list
 
