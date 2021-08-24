@@ -13,21 +13,17 @@
 # https://quay.io/repository/ansible/toolset?tab=tags
 image: quay.io/ansible/toolset:main
 # image: quay.io/ansible/molecule:latest
-#image: docker:19.03.13
 
 # https://docs.gitlab.com/ee/ci/yaml/#services
 # https://stackoverflow.com/a/48727996
 services:
   - docker:19.03.13-dind
-  #  - docker:dind
 
 variables:
   DOCKER_HOST: tcp://docker:2376
   DOCKER_TLS_CERTDIR: "/certs"
   DOCKER_TLS_VERIFY: 1
   DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
-  #DOCKER_HOST: "tcp://docker:2375"
-  #DOCKER_HOST: "tcp://localhost:2375"
   PY_COLORS: 1
   IMG_CENTOS7: geerlingguy/docker-centos7-ansible
   IMG_CENTOS8: geerlingguy/docker-centos8-ansible
@@ -52,14 +48,13 @@ before_script:
   - molecule --version
   - docker -v
   - pwd
+  - ls -l
   - molecule create
   - molecule list
 
 .docker_runner: &docker_runner
-  script:
-    - echo "Running"
-#  tags:
-#    - aks-docker-runner
+  tags:
+    - aks-docker-runner
 
 #
 # LINT
@@ -72,5 +67,201 @@ molecule:lint:centos7:
     MOLECULE_DISTRO: $IMG_CENTOS7
   script:
     - molecule lint
+
+molecule:lint:centos8:
+  stage: lint
+  variables:
+    MOLECULE_DISTRO: $IMG_CENTOS8
+  script:
+    - molecule lint
+
+# Lint - debian
+molecule:lint:debian8:
+  stage: lint
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN8
+  script:
+    - molecule lint
+
+molecule:lint:debian9:
+  stage: lint
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN9
+  script:
+    - molecule lint
+
+molecule:lint:debian10:
+  stage: lint
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN10
+  script:
+    - molecule lint
+
+molecule:lint:debian11:
+  stage: lint
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN11
+  script:
+    - molecule lint
+
+# Lint - ubuntu
+molecule:lint:ubuntu1604:
+  stage: lint
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1604
+  script:
+    - molecule lint
+
+molecule:lint:ubuntu1804:
+  stage: lint
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1804
+  script:
+    - molecule lint
+
+molecule:lint:ubuntu2004:
+  stage: lint
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU2004
+  script:
+    - molecule lint
+
+#
+# Converge
+#
+# converge - centos
+molecule:converge:centos7:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_CENTOS7
+  script:
+    - molecule converge
+
+molecule:converge:centos8:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_CENTOS8
+  script:
+    - molecule converge
+
+# converge - debian
+molecule:converge:debian8:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN8
+  script:
+    - molecule converge
+
+molecule:converge:debian9:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN9
+  script:
+    - molecule converge
+
+molecule:converge:debian10:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN10
+  script:
+    - molecule converge
+
+molecule:converge:debian11:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN11
+  script:
+    - molecule converge
+
+# converge - ubuntu
+molecule:converge:ubuntu1604:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1604
+  script:
+    - molecule converge
+
+molecule:converge:ubuntu1804:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1804
+  script:
+    - molecule converge
+
+molecule:converge:ubuntu2004:
+  stage: converge
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU2004
+  script:
+    - molecule converge
+
+#
+# Verify
+#
+# verify - centos
+molecule:verify:centos7:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_CENTOS7
+  script:
+    - molecule verify
+
+molecule:verify:centos8:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_CENTOS8
+  script:
+    - molecule verify
+
+# verify - debian
+molecule:verify:debian8:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN8
+  script:
+    - molecule verify
+
+molecule:verify:debian9:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN9
+  script:
+    - molecule verify
+
+molecule:verify:debian10:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN10
+  script:
+    - molecule verify
+
+molecule:verify:debian11:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_DEBIAN11
+  script:
+    - molecule verify
+
+# verify - ubuntu
+molecule:verify:ubuntu1604:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1604
+  script:
+    - molecule verify
+
+molecule:verify:ubuntu1804:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU1804
+  script:
+    - molecule verify
+
+molecule:verify:ubuntu2004:
+  stage: verify
+  variables:
+    MOLECULE_DISTRO: $IMG_UBUNTU2004
+  script:
+    - molecule verify
 
 # eof
