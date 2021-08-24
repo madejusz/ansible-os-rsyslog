@@ -52,16 +52,16 @@ before_script:
   - molecule create
   - molecule list
 
-.docker_runner: &docker_runner
-  tags:
-    - aks-docker-runner
+#.docker_runner: &docker_runner
+#  tags:
+#    - aks-docker-runner
 
 #
 # LINT
 #
 # Lint - centos
 molecule:lint:centos7:
-  <<: *docker_runner
+  #  <<: *docker_runner
   stage: lint
   variables:
     MOLECULE_DISTRO: $IMG_CENTOS7
