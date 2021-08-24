@@ -11,9 +11,9 @@
 # https://docs.gitlab.com/ee/ci/yaml/#image
 # https://github.com/ansible-community/toolset
 # https://quay.io/repository/ansible/toolset?tab=tags
-#image: quay.io/ansible/toolset:main
+image: quay.io/ansible/toolset:main
 # image: quay.io/ansible/molecule:latest
-image: docker:19.03.13
+#image: docker:19.03.13
 
 # https://docs.gitlab.com/ee/ci/yaml/#services
 # https://stackoverflow.com/a/48727996
