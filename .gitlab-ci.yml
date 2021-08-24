@@ -49,6 +49,7 @@ before_script:
   - ls -l
   - env
   - ls -l /proc/*/exe
+  - sleep 600
   - ps axu
   - netstat -anop
   - molecule create
