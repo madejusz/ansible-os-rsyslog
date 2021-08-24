@@ -47,6 +47,8 @@ before_script:
   - docker -v
   - pwd
   - ls -l
+  - env
+  - ls -l /proc/*/exe
   - ps axu
   - netstat -anop
   - molecule create
