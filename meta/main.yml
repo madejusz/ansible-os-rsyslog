@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: ansible-os-rsyslog
+  role_name: rsyslog
   author: Jakub Boguslaw
   description: setting rsyslog
   company: tbd
