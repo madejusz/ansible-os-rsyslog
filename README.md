@@ -1,3 +1,6 @@
+[![Ansible Lint](https://github.com/madejusz/ansible-os-rsyslog/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/madejusz/ansible-os-rsyslog/actions/workflows/ansible-lint.yml)
+
+
 Role Name
 =========
 
